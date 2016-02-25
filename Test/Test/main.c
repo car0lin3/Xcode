@@ -17,9 +17,11 @@ int main(int argc, const char * argv[]) {
     
     for(int i=2; i<number; i++){
         if(number%i == 0){
+            printf("%d ", i);
             result=result+i;
         }
     }
+    printf("\n");
     
     printf("%d\n", result);
     
