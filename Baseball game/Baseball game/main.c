@@ -26,7 +26,7 @@ int main(void) {
         numberThree=rand()%10;
     }//Assign new numbers if there's a collision
     
-    printf("%d %d %d\n", numberOne, numberTwo, numberThree);
+    printf("Answer: %d %d %d\n", numberOne, numberTwo, numberThree);
     
     while(gameSet==0){
         printf("GIVE ME THREE NUMBERS BETWEEN 0~9.\n");
@@ -39,19 +39,20 @@ int main(void) {
         while(1){
             int ball=0, strike=0;
             if(inputOne==numberOne) strike++;
-            else if(inputOne==numberTwo) ball++;
-            else if(inputOne==numberThree) ball++;
-            else if(inputTwo==numberOne) ball++;
-            else if(inputTwo==numberTwo) strike++;
-            else if(inputTwo==numberThree) ball++;
-            else if(inputThree==numberOne) ball++;
-            else if(inputThree==numberTwo) ball++;
-            else if(inputThree==numberThree) strike++;
+            if(inputOne==numberTwo) ball++;
+            if(inputOne==numberThree) ball++;
+            if(inputTwo==numberOne) ball++;
+            if(inputTwo==numberTwo) strike++;
+            if(inputTwo==numberThree) ball++;
+            if(inputThree==numberOne) ball++;
+            if(inputThree==numberTwo) ball++;
+            if(inputThree==numberThree) strike++;
             printf("%d strike, %d ball\n", strike, ball);
             break;
         }
         if(inputOne==numberOne || inputTwo==numberTwo || inputThree==numberThree){
             gameSet=1;
+            printf("Congratulation!");
         }//Terminate game
         
         count++; //Count increased
