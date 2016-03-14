@@ -7,8 +7,9 @@
 //
 
 #include <stdio.h>
+#include <math.h>
 
-void dissecNumbers(int number);
+void dissectNumbers(int number);
 
 int main(int argc, const char * argv[]) {
     unsigned int number=0;
@@ -20,41 +21,50 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-int dissectNumbers(int number){
+void dissectNumbers(int number){
     
-    int decimalPoint=1;
-    int tempOne=0;
+    int cipher=0;
     int sum=0;
     
-    if (number < 10)
-        return 0; //job's finished.
-    
-    tempOne=number;
-    
-    while(tempOne>=10){
-        tempOne=tempOne/10;
-        decimalPoint++;
-    } //find decimal point
-    
-    printf("decimal point: %d\n", decimalPoint);
-    
-    int array[decimalPoint];
-    
-    while (decimalPoint >=0){
-        for (int j=0; j<decimalPoint; j++){
-            int i=1;
-            int temp=i*10^(decimalPoint-1);
-            while(temp < number){
-                i++;
-                temp=i*10^(decimalPoint-1);
-            }
-            array[decimalPoint]=i;
-            number=array
-        }
-        
+    if(number<10){
+        printf("FINISHED.\n");
+        return;
     }
+    
+    while(number>pow(10,cipher)){
+        cipher++;
+    }//find the cipher
+    
+    int array[cipher];
+    cipher--;
+    
+    printf("Number: %d, Cipher: %d\n", number, cipher);
+    
+    for (int i=0; i<cipher+1; i++)
+        array[i]=0;
+    // {0, 0, 0, 0} for example
+    
+    int tempNumber=number;
+    int tempCipher=cipher;
+    
+    for (int j=0; j<cipher+1; j++){
+        while( array[j]*pow(10, tempCipher) < tempNumber){
+            array[j]++;
+        }
+        array[j]--;
+        tempNumber= tempNumber-array[j]*pow(10, tempCipher);
+        tempCipher--;
+    }
+    array[cipher]++;
+    
+    for(int i=0; i<cipher+1; i++){
+        sum=sum+array[i];
+    }
+    
+    printf("Sum: %d\n", sum);
+    number=sum;
     
     dissectNumbers(number);
 
-    return 0;
+    return;
 }
