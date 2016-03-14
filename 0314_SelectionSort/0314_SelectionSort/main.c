@@ -15,7 +15,7 @@
 
 int main(int argc, const char * argv[]) {
     int size;
-    printf("size of number array?\n");
+    printf("Size of number array?\n");
     scanf("%d", &size);
     int array[size];
     srand((unsigned)time(NULL));
@@ -46,8 +46,8 @@ int main(int argc, const char * argv[]) {
     }
     
     for(int i=0; i<size; i++){
-        printf("%d, ", array[i]);
+        printf("%d ", array[i]);
     }
-    
+    printf("Sorting completed.\n");
     return 0;
 }
