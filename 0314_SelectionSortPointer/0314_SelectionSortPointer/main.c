@@ -13,6 +13,8 @@
 #define true 1;
 #define false 0;
 
+void swap(int *a, int *b);
+
 int main(int argc, const char * argv[]) {
     int size;
     printf("Size of number array?\n");
@@ -25,25 +27,21 @@ int main(int argc, const char * argv[]) {
     }
     
     int temp_min;
-    int temp_temp;
     int indicator;
     int found=0;
     
     for(int i=0; i<size; i++){
         temp_min=array[i];
         found=0;
-        for(int j=i+1; j<size; j++){
+        for(int j=i; j<size; j++){
             if(array[j]<temp_min) {
                 indicator=j;
-                temp_min=array[j];
                 found=1;
-                }
             }
+        }
         if(found==1){
-            temp_temp=array[i];
-            array[i]=array[indicator];
-            array[indicator]=temp_temp;
-            }
+            swap(&array[i], &array[indicator]);
+        }
     }
     
     for(int i=0; i<size; i++){
@@ -51,4 +49,11 @@ int main(int argc, const char * argv[]) {
     }
     printf("Sorting completed.\n");
     return 0;
+}
+
+void swap(int *a, int *b){
+    int temp;
+    temp=*a;
+    *a=*b;
+    *b=temp;
 }
